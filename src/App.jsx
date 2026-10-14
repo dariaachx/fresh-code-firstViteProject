@@ -1,16 +1,36 @@
-import { useState } from 'react'
+import { Component } from 'react'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
+import Header from './components/Header/Header'
+import Main from './components/Main/Main'
+import Footer from './components/Footer/Footer'
 
-function App() {
-  const [count, setCount] = useState(0)
+class App extends Component{
 
-  return (
+    state = {
+      count: 0,
+      movies: ['Gladiator', 'Harry Potter', 'LOTR'], 
+      actors: [
+        'Russell Crowe — General Maximus Decimus Meridius',
+        'Joaquin Phoenix — Commodus',
+        'Connie Nielsen — Lucilla',
+        'Oliver Reed — Antonius Proximo',
+        'Richard Harris — Emperor Marcus Aurelius',
+        'Derek Jacobi — Senator Gracchus',
+        'Djimon Hounsou — Juba',
+        'Tomas Arana — Quintus',
+        "Rory McCann / Sven-Ole Thorsen — Tigris of Gaul (featured gladiator)"
+      ],
+    }
+
+
+  render() {
+      return (
     <>
       <section id="center">
-        <div className="hero">
+        {/* <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
           <img src={viteLogo} className="vite" alt="Vite logo" />
@@ -20,17 +40,31 @@ function App() {
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
-        </div>
+        </div> */}
         <button
           type="button"
           className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => this.setState({count: this.state.count + 1})}
         >
-          Count is {count}
+          Count is {this.state.count}
         </button>
+
+
+        <Header 
+          count={this.state.count}
+          movies={this.state.movies}
+        />
+
+        <Main 
+          actors={this.state.actors}
+        />
+
+        <Footer />
+
+
       </section>
 
-      <div className="ticks"></div>
+      {/* <div className="ticks"></div>
 
       <section id="next-steps">
         <div id="docs">
@@ -114,9 +148,11 @@ function App() {
       </section>
 
       <div className="ticks"></div>
-      <section id="spacer"></section>
+      <section id="spacer"></section> */}
     </>
   )
+  }
+  
 }
 
 export default App
